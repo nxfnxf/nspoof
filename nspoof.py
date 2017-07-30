@@ -17,7 +17,7 @@ vIP = raw_input("Victims IP: ")
 gIP = raw_input("Gateway IP: ")
 interface = raw_input("Interface to use: ")
 path = raw_input("Enter path of ip forwarding config file (put \"d\" for default \"/proc/sys/net/ipv4/ip_forward\":")
-if path = "d":
+if path == "d":
 	os.system("echo 1 > /proc/sys/net/ipv4/ip_forward")
 else:
 	os.system("echo 1 > " + path)
