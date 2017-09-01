@@ -4,7 +4,7 @@ import sys
 import threading
 from termcolor import colored
 
-print colored("\n\n'##::: ##::'######::'########:::'#######:::'#######::'########:", "red")
+print colored("\n\n##::: ##::'######::'########:::'#######:::'#######::'########:", "red")
 print colored("###:: ##:'##... ##: ##.... ##:'##.... ##:'##.... ##: ##.....::", "red")
 print colored("####: ##: ##:::..:: ##:::: ##: ##:::: ##: ##:::: ##: ##:::::::", "red")
 print colored("## ## ##:. ######:: ########:: ##:::: ##: ##:::: ##: ######:::", "red")
@@ -38,7 +38,7 @@ def reArp():
 
 def handle_dns(pkt):
 	if pkt.haslayer(DNS) and pkt.getlayer(DNS).qr == 0 and pkt.getlayer(IP).src == vIP:
-		print colored("Poisoned victim " + pkt.getlayer(IP).src + " has visited " + pkt.getlayer(DNS).qd.qname + " - " + time.strftime("%H:%M:%S") + "\n", "blue")
+		print colored("[" + time.strftime("%H:%M:%S") + "] Poisoned victim " + pkt.getlayer(IP).src + " has visited " + pkt.getlayer(DNS).qd.qname + "\n", "blue")
 
 def poisonGateway():
 	gMac = MACsnag(gIP)
